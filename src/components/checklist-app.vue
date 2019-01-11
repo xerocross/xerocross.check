@@ -1,5 +1,5 @@
 <template>
-    <div class="checklist-app container">
+    <div class="checklist-app">
         <h1>check</h1>
         <div v-show = "status == 'using'">
             <select 
