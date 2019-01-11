@@ -27,7 +27,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^5.2.0",
-    "cross-vue-base": "^0.4.0",
+    "cross-vue-base": "^0.4.2",
     "css-loader": "^1.0.0",
     "eslint": "^5.9.0",
     "eslint-config-standard": "^12.0.0",
@@ -50,6 +50,7 @@
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.8",
+    "xerocross-dstructs": "^0.3.2",
     "yarn": "^1.9.4"
   }
 }

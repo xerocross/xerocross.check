@@ -1,12 +1,12 @@
-import VueProjectTemplate from "./components/vue-project-template.vue";
+import ChecklistApp from "./components/checklist-app.vue";
 import Vue from "vue";
 
 new Vue({
-    el : "#vue-project-template",
+    el : "#checklist-app",
     components : {
-        VueProjectTemplate
+        ChecklistApp
     },
     render : function (createElement) {
-        return createElement(VueProjectTemplate);
+        return createElement(ChecklistApp);
     }
 });

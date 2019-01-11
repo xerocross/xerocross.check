@@ -1662,6 +1662,11 @@ commondir@^1.0.1:
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
   integrity sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=
 
+comparison-wrapper@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/comparison-wrapper/-/comparison-wrapper-0.3.0.tgz#ffc00a2093939c4fdfccfdeadfbf2225d5a60fd0"
+  integrity sha512-QoE7sqiMq6rjkKjq/p/gvt4BF/JAgWbF3GJHXFejyWmy3PeXkZmBD5V99S4GrSkf84ZbSWB9vSuTGVKVAR1DBw==
+
 component-emitter@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
@@ -1848,10 +1853,10 @@ cross-spawn@^6.0.0, cross-spawn@^6.0.5:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-cross-vue-base@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/cross-vue-base/-/cross-vue-base-0.4.0.tgz#bddd4f0a7f050f53c91a890d582f9913718f2df1"
-  integrity sha512-h0gWPWEmAT2/pW/EfEEI6dWUl76RAt5IcA7VD+ICbj0ytI/VnrK1XbZckxSMcm6e4KkI3tlLVdlMDjzbNFvPEg==
+cross-vue-base@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/cross-vue-base/-/cross-vue-base-0.4.2.tgz#521904f422d1112653d315e7827d2774d2e770b9"
+  integrity sha512-19R/RPzgVwUHhTBBdvYI3LpYqFEqDdxJRF7OGpFRA6u8+jbVrj0hBE2CaTietP1HVC+R3tt3mxcyNO4J8IJ3dQ==
   dependencies:
     q "^1.5.1"
     vue "^2.5.21"
@@ -6240,6 +6245,11 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
+we-assert@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/we-assert/-/we-assert-0.12.0.tgz#b2eb16a69d1537461399bdb910fd82202d13a8fd"
+  integrity sha512-BFN4UkteCNj/ESAZ/1E70QBnbcpk0+BuzeREl4ealbTaohfo2ggJFdhb7kEUIG3/NAhX0BkL0KUd8GWaxIGhUA==
+
 webpack-cli@^3.1.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.1.2.tgz#17d7e01b77f89f884a2bbf9db545f0f6a648e746"
@@ -6416,6 +6426,14 @@ write@^0.2.1:
   integrity sha1-X8A4KOJkzqP+kUVUdvejxWbLB1c=
   dependencies:
     mkdirp "^0.5.1"
+
+xerocross-dstructs@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/xerocross-dstructs/-/xerocross-dstructs-0.3.2.tgz#8b928ccfe4b7a3885211b2ec433de67e24181afa"
+  integrity sha512-PbUiBA/vjUwS4vVtOKJNP38aT1FbY9R4Ehe6erCJ4tGWZFaPjnYljZCuNTBsBAZJH5lrPL4k/APBWPC4PrLgjQ==
+  dependencies:
+    comparison-wrapper "^0.3.0"
+    we-assert "^0.12.0"
 
 xregexp@4.0.0:
   version "4.0.0"
