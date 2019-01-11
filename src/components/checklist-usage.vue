@@ -4,7 +4,7 @@
             <li 
                 v-for = "(item, index) in checklist" 
                 :key = "item.key"
-                :class = "item.done ? 'done' : ''"
+                :class = "item.done ? 'done-item' : ''"
                 class = "list-group-item"
                 @click.prevent="toggleDone(index)"
             >
@@ -79,7 +79,7 @@ export default {
     .list-group-item {
         cursor: pointer;
     }
-    .done {
+    .done-item {
         text-decoration: line-through;
     }
 }
