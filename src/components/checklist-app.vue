@@ -25,7 +25,6 @@
                 <checklist-usage :checklist-data = "checklists[currentChecklistKey]" />
             </div>
         </div>
-
         <checklist-editor
             v-if = "status == 'editing'"
             :current-checklist = "checklists[currentChecklistKey]"
