@@ -1,6 +1,6 @@
 <template>
     <div class="checklist-app container">
-        <h1>Checklists</h1>
+        <h1>check</h1>
         <div v-show = "status == 'using'">
             <select 
                 v-model = "currentChecklistKey" 
