@@ -1,6 +1,5 @@
 <template>
     <div class="checklist-app">
-        <h1>check</h1>
         <div v-show = "status == 'using'">
             <select 
                 v-model = "currentChecklistKey" 
@@ -102,6 +101,7 @@ export default {
             let newKey = StringHash(newChecklist.name) + ":" + performance.now();
             this.$set(this.checklists, newKey, newChecklist);
             this.localStore.addItem(newKey, JSON.stringify(newChecklist));
+            this.currentChecklistKey = newKey;
             this.status = "using";
         },
         edit () {
@@ -123,7 +123,7 @@ export default {
         font-size: 16pt;
     }
     .list-group-item:nth-child(odd) {
-        background-color:rgb(181, 198, 214);
+        background-color:rgb(201, 219, 236);
     }
     .btn-group {
         margin-top:1em;
