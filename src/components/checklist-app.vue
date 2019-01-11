@@ -22,7 +22,7 @@
                     @click.prevent = "makeNewChecklist">new</a>
             </div>
             <div 
-                class = "panel">
+                class = "usage-panel">
                 <checklist-usage :checklist-data = "checklists[currentChecklistKey]" />
             </div>
         </div>
@@ -115,7 +115,7 @@ export default {
 </script>
 <style lang="scss">
 .checklist-app {
-    .panel {
+    .usage-panel {
         margin-top: 1em;
     }
     .item {
