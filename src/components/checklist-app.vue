@@ -1,6 +1,7 @@
 <template>
     <div class="checklist-app">
         <div v-show = "status == 'using'">
+            <label>Your Checklists</label>
             <select 
                 v-model = "currentChecklistKey" 
                 class="form-control">
@@ -16,6 +17,9 @@
                 <a 
                     class="btn btn-success" 
                     @click.prevent = "edit">edit</a>
+                <a 
+                    class="btn btn-success" 
+                    @click.prevent = "deleteThisChecklist">delete</a>
                 <a 
                     class="btn btn-success" 
                     @click.prevent = "makeNewChecklist">new</a>
@@ -42,9 +46,8 @@
 </template>
 <script>
 import ChecklistEditor from "./checklist-editor.vue";
-import {SimpleHashSet} from "xerocross-dstructs";
 import ChecklistUsage from "./checklist-usage.vue";
-import {StoreLocal} from "cross-vue-base";
+import {StoreLocal} from "cross-js-base";
 import {StringHash} from "../helpers/string-hash.js";
 
 export default {
@@ -108,6 +111,13 @@ export default {
         },
         makeNewChecklist () {
             this.status = "new";
+        },
+        deleteThisChecklist () {
+            if (confirm("Delete this checklist?  (There is no undo.)")) {
+                this.localStore.removeItem(this.currentChecklistKey);
+                this.$delete(this.checklists, this.currentChecklistKey);
+                this.currentChecklistKey = this.checklistKeys[0];
+            }
         }
     }
 }

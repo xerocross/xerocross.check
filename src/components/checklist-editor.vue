@@ -1,6 +1,5 @@
 <template>
     <div class="checklist-editor">
-        <p>create and edit checklists</p>
         <label>Checklist Name</label>
         <form @submit.prevent = "">
             <input 

@@ -1,5 +1,6 @@
 <template>
     <div class="checklist-usage">
+        <h2>{{ checklistData.name }}</h2>
         <ul class="list-group">
             <li 
                 v-for = "(item, index) in checklist" 
