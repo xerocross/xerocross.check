@@ -1984,10 +1984,10 @@ cross-env@^5.2.0:
     cross-spawn "^6.0.5"
     is-windows "^1.0.0"
 
-cross-js-base@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/cross-js-base/-/cross-js-base-0.1.1.tgz#9e15a7ccedd0a5b93f2416755a764ec187cf6f16"
-  integrity sha512-sfSw+tGj0layT3rnGxtEw3JtFZDO0tuKFguJ9D/fWfLHa574eNQJCe/A9q2uzS85neog/jV1LIKhYEVkh8n8Pg==
+cross-js-base@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/cross-js-base/-/cross-js-base-0.1.2.tgz#0c963799e59ad0f441c9de395100ad1fd879f1e2"
+  integrity sha512-FqU370Gh4kNkaran/xnVby8rjk559/T1bvHtlrH1QCT0fJzTb5oYEkQ9kvYoykUNs7jI3QL7EA3F5XJj24trlg==
   dependencies:
     babel-core "^6.26.3"
     babel-eslint "^10.0.1"
@@ -4568,7 +4568,7 @@ jest-worker@^23.2.0:
   dependencies:
     merge-stream "^1.0.1"
 
-jest@^23.4.1:
+jest@^23.4.1, jest@^23.6.0:
   version "23.6.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-23.6.0.tgz#ad5835e923ebf6e19e7a1d7529a432edfee7813d"
   integrity sha512-lWzcd+HSiqeuxyhG+EnZds6iO3Y3ZEnMrfZq/OTGvF/C+Z4fPMCdhWTGSAiO2Oym9rbEXfwddHhh6jqrTF3+Lw==

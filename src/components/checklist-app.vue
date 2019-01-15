@@ -49,6 +49,7 @@ import ChecklistEditor from "./checklist-editor.vue";
 import ChecklistUsage from "./checklist-usage.vue";
 import {StoreLocal} from "cross-js-base";
 import {StringHash} from "../helpers/string-hash.js";
+import Checklist from "../helpers/checklist.js";
 
 export default {
     components : {
@@ -85,11 +86,21 @@ export default {
 
                 for (let i = 0; i < storedChecklistsIndex.length; i++) {
                     let key = storedChecklistsIndex[i];
-                    let checklist = JSON.parse(this.localStore.getItem(key));
+                    let checklist;
+                    try {
+                        checklist = JSON.parse(this.localStore.getItem(key));
+                        if (!Checklist.validate(checklist)) {
+                            throw new Error();
+                        }
+                    }
+                    catch (e) {
+                        this.localStore.removeItem(key)
+                        throw new Error();
+                    }
                     this.$set(this.checklists, key, checklist);
                 }
             } catch (e) {
-                localStorage.removeItem(indexName);
+                //localStorage.removeItem(indexName);
                 alert("There was an error accessing local storage.  Please refresh.");
             }
         },
