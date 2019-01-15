@@ -2,7 +2,11 @@
     <div class="checklist-app">
         <div v-show = "status == 'using'">
             <label>Your Checklists</label>
+            <div 
+                v-show = "checklistKeys.length == 0" 
+                class="alert alert-info">you have no checklists yet</div>
             <select 
+                v-show = "checklistKeys.length > 0"
                 v-model = "currentChecklistKey" 
                 class="form-control">
                 <option 
@@ -15,10 +19,12 @@
             </select>
             <div class="btn-group">
                 <a 
-                    class="btn btn-success" 
+                    v-show = "checklistKeys.length > 0" 
+                    class="btn btn-success"
                     @click.prevent = "edit">edit</a>
                 <a 
-                    class="btn btn-success" 
+                    v-show = "checklistKeys.length > 0" 
+                    class="btn btn-success"
                     @click.prevent = "deleteThisChecklist">delete</a>
                 <a 
                     class="btn btn-success" 
@@ -41,7 +47,21 @@
             @event_cancel = "status = 'using'"
             @event_save = "saveNew"
         />
-
+        <drawer-div
+            button-text-open = "about checklists"
+            button-text-close = "hide"
+        >
+            <h2>About Checklists</h2>
+            <p>
+                A checklist is not the same thing as a to-do list.
+                By its nature, a checklist is reusable.  For example, 
+                it might be your nightly hygiene routine or steps 
+                necessary before you can safely start a plane.  They 
+                are not ad-hoc lists of things to do.  That's why in
+                this app you can save them, edit them, and re-use them.
+                All your data is saved locally on your own computer.
+            </p>
+        </drawer-div>
     </div>
 </template>
 <script>
@@ -50,11 +70,13 @@ import ChecklistUsage from "./checklist-usage.vue";
 import {StoreLocal} from "cross-js-base";
 import {StringHash} from "../helpers/string-hash.js";
 import Checklist from "../helpers/checklist.js";
+import { DrawerDiv } from "cross-vue-base";
 
 export default {
     components : {
         ChecklistEditor,
-        ChecklistUsage
+        ChecklistUsage,
+        DrawerDiv
     },
     data () {
         return {
@@ -147,6 +169,14 @@ export default {
     }
     .btn-group {
         margin-top:1em;
+    }
+    .alert.alert-info {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    h2 {
+        font-size: 130%;
+        font-weight: bold;
     }
     select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] { font-size: 16px; }
 }
