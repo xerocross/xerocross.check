@@ -1,16 +1,15 @@
 <template>
     <div class="checklist-usage">
+        
         <h2>{{ checklistData.name }}</h2>
         <ul class="list-group">
             <li 
-                v-for = "(item, index) in checklist" 
+                v-for = "(item, index) in checklistData.items" 
                 :key = "item.key"
                 :class = "item.done ? 'done-item' : ''"
                 class = "list-group-item"
-                @click.prevent="toggleDone(index)"
+                @click.prevent="toggleDone(item.key)"
             >
-                
-
                 <div class="row">
                     <div class="col-sm-12">
                         <span class="item"> 
@@ -43,33 +42,17 @@ export default {
     },
     data () {
         return {
-            checklist : []
         }
     },
     watch : {
-        checklistData () {
-            this.update();
-        }
     },
     mounted () {
-        this.update();
     },
     methods : {
-        toggleDone (index) {
-            this.checklist[index].done = !this.checklist[index].done;
-        },
-        update () {
-            if (this.checklistData.items) {
-                let dataList = this.checklistData.items;
-                this.checklist = [];
-                for (let i = 0; i < dataList.length; i++) {
-                    this.checklist.push({
-                        listItemText : dataList[i].listItemText,
-                        key : dataList[i].key,
-                        done : false
-                    });
-                }
-            }
+        toggleDone (key) {
+            console.log(key);
+            this.$emit("click_item", key);
+            //this.checklist[index].done = !this.checklist[index].done;
         }
     }
 }

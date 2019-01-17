@@ -1,5 +1,8 @@
 <template>
     <div class="checklist-app">
+        <div v-show = "status == 'signup'">
+            <signup-div/>
+        </div>
         <div v-show = "status == 'using'">
             <label>Your Checklists</label>
             <div 
@@ -26,13 +29,22 @@
                     v-show = "checklistKeys.length > 0" 
                     class="btn btn-success"
                     @click.prevent = "deleteThisChecklist">delete</a>
+                
+                <a 
+                    v-show = "checklistKeys.length > 0" 
+                    class="btn btn-success" 
+                    @click.prevent = "resetThisChecklist">reset
+                </a>
                 <a 
                     class="btn btn-success" 
                     @click.prevent = "makeNewChecklist">new</a>
             </div>
             <div 
                 class = "usage-panel">
-                <checklist-usage :checklist-data = "checklists[currentChecklistKey]" />
+                <checklist-usage 
+                    :checklist-data = "checklists[currentChecklistKey]" 
+                    @click_item = "toggleItemDone"
+                />
             </div>
         </div>
         <checklist-editor
@@ -71,12 +83,14 @@ import {StoreLocal} from "cross-js-base";
 import {StringHash} from "../helpers/string-hash.js";
 import Checklist from "../helpers/checklist.js";
 import { DrawerDiv } from "cross-vue-base";
+import SignupDiv from "./signup-div.vue";
 
 export default {
     components : {
         ChecklistEditor,
         ChecklistUsage,
-        DrawerDiv
+        DrawerDiv,
+        SignupDiv
     },
     data () {
         return {
@@ -86,20 +100,64 @@ export default {
                 itemList : []
             },
             currentChecklistKey : "",
-            status : "using",
-            localStore : null
+            status : "signup",
+            localStore : null,
+            username : "",
+            stateStore : null
         }
     },
     computed : {
         checklistKeys () {
             return Object.keys(this.checklists);
+        },
+        isSignedIn () {
+            return typeof this.username == "string";
+        },
+        currentChecklistObject () {
+            return this.checklists[this.currentChecklistKey];
+        }
+    },
+    watch : {
+        isSignedIn () {
+            if (this.isSignedIn) {
+                this.status = "using";
+            }
+        },
+        currentChecklistKey () {
+            this.stateStore.addItem("currentChecklist", this.currentChecklistKey);
         }
     },
     mounted () {
         this.buildFromStorage();
         this.currentChecklistKey = this.checklistKeys[0];
+        this.stateStore = StoreLocal.build("checklist-state");
+        let key = this.stateStore.getItem("currentChecklist")
+        if (key) {
+            this.currentChecklistKey = key;
+        }
+        this.username = "adam";
+        this.status = "using";
     },
     methods : {
+        toggleItemDone (key) {
+            let item = this.currentChecklistObject.items.filter(item => item.key == key)[0];
+            window.item = item;
+            if (item.done == true) {
+                item.done = false;
+            } else {
+                this.$set(item, "done", true);
+            }
+            this.persist();
+        },
+        resetThisChecklist () {
+            if (confirm("Reset the current checklist?")) {
+                let list = this.currentChecklistObject.items;
+                for (let i = 0; i < list.length; i++) {
+                    list[i].done = false;
+                }
+                this.persist();
+            }
+        },
         buildFromStorage () {
             let indexName = "checklists";
             try {
@@ -122,15 +180,35 @@ export default {
                     this.$set(this.checklists, key, checklist);
                 }
             } catch (e) {
-                //localStorage.removeItem(indexName);
                 alert("There was an error accessing local storage.  Please refresh.");
             }
         },
-        saveEdits (newChecklist) {
-            this.$set(this.checklists, this.currentChecklistKey, newChecklist);
+        persist () {
+            let cleanChecklist = this.buildCleanData();
             this.localStore.removeItem(this.currentChecklistKey);
-            this.localStore.addItem(this.currentChecklistKey, JSON.stringify(newChecklist));
+            this.localStore.addItem(this.currentChecklistKey, JSON.stringify(cleanChecklist));
+        },
+        saveEdits (newChecklist) {
+
+            this.$set(this.checklists, this.currentChecklistKey, newChecklist);
+            this.persist();
             this.status = "using";
+        },
+        buildCleanData () {
+            let items = this.currentChecklistObject.items;
+            let cleanList = [];
+            for (let i = 0; i < items.length; i++) {
+                cleanList.push({
+                    listItemText : items[i].listItemText,
+                    key : items[i].key,
+                    done : items[i].done
+                });
+            }
+            let checklist = {
+                name : this.currentChecklistObject.name,
+                items : cleanList
+            }
+            return checklist;
         },
         saveNew (newChecklist) {
             let newKey = StringHash(newChecklist.name) + ":" + performance.now();

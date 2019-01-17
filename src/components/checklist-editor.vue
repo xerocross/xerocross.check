@@ -7,8 +7,6 @@
                 class="form-control" 
                 type = "text"/>
         </form>
-        
-        
         <ul class="list-group">
             <li
                 v-for = "(item, index) in itemList"
@@ -72,7 +70,6 @@
 </template>
 <script>
 import {DrawerDiv} from "cross-vue-base";
-import {StoreLocal} from "cross-vue-base";
 import {StringHash} from "../helpers/string-hash.js";
 
 export default {
@@ -152,18 +149,10 @@ export default {
                 alert("Checklist Name is required");
                 return;
             }
-            let cleanList = [];
-            for (let i = 0; i < this.itemList.length; i++) {
-                cleanList.push({
-                    listItemText : this.itemList[i].listItemText,
-                    key : this.itemList[i].key
-                });
-            }
-            let checklist = {
+            this.$emit("event_save", {
                 name : this.checklistName,
-                items : cleanList
-            }
-            this.$emit("event_save", checklist);
+                items : this.itemList
+            });
         },
         cancel () {
             if (confirm("Discard changes?")) {
