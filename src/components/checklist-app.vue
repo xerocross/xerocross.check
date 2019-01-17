@@ -146,6 +146,8 @@ export default {
                 item.done = false;
             } else {
                 this.$set(item, "done", true);
+                let t = new Date();
+                this.$set(item, "doneTime", t.toJSON());
             }
             this.persist();
         },
@@ -201,7 +203,8 @@ export default {
                 cleanList.push({
                     listItemText : items[i].listItemText,
                     key : items[i].key,
-                    done : items[i].done
+                    done : items[i].done,
+                    doneTime : items[i].doneTime
                 });
             }
             let checklist = {

@@ -6,13 +6,15 @@
             <li 
                 v-for = "(item, index) in checklistData.items" 
                 :key = "item.key"
-                :class = "item.done ? 'done-item' : ''"
+                
                 class = "list-group-item"
                 @click.prevent="toggleDone(item.key)"
             >
                 <div class="row">
                     <div class="col-sm-12">
-                        <span class="item"> 
+                        <span 
+                            :class = "item.done ? 'done-item' : ''" 
+                            class="item"> 
                             
                             <span 
                                 v-show = "item.done" 
@@ -22,8 +24,11 @@
                                 class="glyphicon glyphicon-unchecked">
                                 
                             </span>
-                            {{ item.listItemText }}
+                            {{ item.listItemText }} 
                         </span>
+                        <span 
+                            v-show = "item.done" 
+                            class="done-time">{{ displayTime(item.doneTime) }}</span>
                     </div>
                 </div>
 
@@ -33,6 +38,8 @@
     </div>
 </template>
 <script>
+import moment from "moment";
+
 export default {
     props : {
         checklistData : {
@@ -50,9 +57,14 @@ export default {
     },
     methods : {
         toggleDone (key) {
-            console.log(key);
             this.$emit("click_item", key);
-            //this.checklist[index].done = !this.checklist[index].done;
+        },
+        displayTime (dateString) {
+            try {
+                return moment(dateString).format('LLL');
+            } catch (e) {
+                return "";
+            }
         }
     }
 }
@@ -65,6 +77,9 @@ export default {
     }
     .done-item {
         text-decoration: line-through;
+    }
+    .done-time {
+        padding-left:2em;
     }
 }
 </style>
