@@ -18,7 +18,7 @@
   "license": "0BSD",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xerocross/checklist-app.git"
+    "url": "git+https://github.com/xerocross/xerocross.check.git"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
@@ -54,7 +54,6 @@
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8",
-    "xerocross-dstructs": "^0.3.2"
+    "webpack-dev-server": "^3.1.8"
   }
 }

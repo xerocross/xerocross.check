@@ -1812,11 +1812,6 @@ commondir@^1.0.1:
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
   integrity sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=
 
-comparison-wrapper@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/comparison-wrapper/-/comparison-wrapper-0.3.0.tgz#ffc00a2093939c4fdfccfdeadfbf2225d5a60fd0"
-  integrity sha512-QoE7sqiMq6rjkKjq/p/gvt4BF/JAgWbF3GJHXFejyWmy3PeXkZmBD5V99S4GrSkf84ZbSWB9vSuTGVKVAR1DBw==
-
 component-emitter@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
@@ -7629,11 +7624,6 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-we-assert@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/we-assert/-/we-assert-0.12.0.tgz#b2eb16a69d1537461399bdb910fd82202d13a8fd"
-  integrity sha512-BFN4UkteCNj/ESAZ/1E70QBnbcpk0+BuzeREl4ealbTaohfo2ggJFdhb7kEUIG3/NAhX0BkL0KUd8GWaxIGhUA==
-
 webidl-conversions@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
@@ -7904,14 +7894,6 @@ ws@^6.1.2:
   dependencies:
     async-limiter "~1.0.0"
 
-xerocross-dstructs@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/xerocross-dstructs/-/xerocross-dstructs-0.3.2.tgz#8b928ccfe4b7a3885211b2ec433de67e24181afa"
-  integrity sha512-PbUiBA/vjUwS4vVtOKJNP38aT1FbY9R4Ehe6erCJ4tGWZFaPjnYljZCuNTBsBAZJH5lrPL4k/APBWPC4PrLgjQ==
-  dependencies:
-    comparison-wrapper "^0.3.0"
-    we-assert "^0.12.0"
-
 xml-name-validator@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
@@ -8048,11 +8030,6 @@ yargs@^7.0.0:
     which-module "^1.0.0"
     y18n "^3.2.1"
     yargs-parser "^5.0.0"
-
-yarn@^1.9.4:
-  version "1.12.3"
-  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.12.3.tgz#fb4599bf1f8da01552bcc7e1571dfd4e53788203"
-  integrity sha512-8f5rWNDvkhAmCxmn8C0LsNWMxTYVk4VGKiq0sIB6HGZjaZTHsGIH87SUmVDUEd2Wk54bqKoUlbVWgQFCQhRkVw==
 
 zombie@^6.1.4:
   version "6.1.4"
