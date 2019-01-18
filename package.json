@@ -1,5 +1,5 @@
 {
-  "name": "vue-project-template",
+  "name": "xerocross.check",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
@@ -12,7 +12,7 @@
     "start": "node app.js"
   },
   "keywords": [
-    ""
+    "checklists"
   ],
   "author": "Adam Cross",
   "license": "0BSD",
@@ -55,7 +55,6 @@
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.8",
-    "xerocross-dstructs": "^0.3.2",
-    "yarn": "^1.9.4"
+    "xerocross-dstructs": "^0.3.2"
   }
 }
