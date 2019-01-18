@@ -143,7 +143,9 @@ export default {
             let item = this.currentChecklistObject.items.filter(item => item.key == key)[0];
             window.item = item;
             if (item.done == true) {
-                item.done = false;
+                if(confirm("Uncheck this item?")) {
+                    item.done = false;
+                }
             } else {
                 this.$set(item, "done", true);
                 let t = new Date();
