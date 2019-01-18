@@ -12,8 +12,6 @@ export default {
                 return false
             }
         }
-        console.log("validated: ");
-        console.log(data);
         return true;
     },
     Checklist (data) {

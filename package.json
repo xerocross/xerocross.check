@@ -1,7 +1,7 @@
 {
   "name": "xerocross.check",
   "version": "0.0.1",
-  "description": "",
+  "description": "A simple checklist app",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,7 +18,7 @@
   "license": "0BSD",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/xerocross/checklist-app.git"
   },
   "dependencies": {
     "babel-core": "^6.26.3",

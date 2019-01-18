@@ -4,7 +4,8 @@ const webpack = require('webpack')
 
 module.exports = [{
     entry : {
-        'checklist-app' : './src/index.js'
+        'checklist-app' : './src/checklist-app.js',
+        'index' : './src/index.js'
     },
     output : {
         path : path.resolve(__dirname, './dist'),

@@ -1,12 +1,10 @@
 <template>
     <div class="checklist-usage">
-        
         <h2>{{ checklistData.name }}</h2>
         <ul class="list-group">
             <li 
                 v-for = "(item, index) in checklistData.items" 
                 :key = "item.key"
-                
                 class = "list-group-item"
                 @click.prevent="toggleDone(item.key)"
             >
@@ -31,29 +29,18 @@
                             class="done-time">{{ displayTime(item.doneTime) }}</span>
                     </div>
                 </div>
-
-
             </li>
         </ul>
     </div>
 </template>
 <script>
 import moment from "moment";
-
 export default {
     props : {
         checklistData : {
             type : "object",
             default : {}
         }
-    },
-    data () {
-        return {
-        }
-    },
-    watch : {
-    },
-    mounted () {
     },
     methods : {
         toggleDone (key) {
@@ -71,7 +58,6 @@ export default {
 </script>
 <style lang="scss">
 .checklist-usage {
-    
     .list-group-item {
         cursor: pointer;
     }

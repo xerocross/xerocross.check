@@ -41,7 +41,7 @@
             </div>
             <div 
                 class = "usage-panel">
-                <checklist-usage 
+                <checklist-display 
                     :checklist-data = "checklists[currentChecklistKey]" 
                     @click_item = "toggleItemDone"
                 />
@@ -78,7 +78,7 @@
 </template>
 <script>
 import ChecklistEditor from "./checklist-editor.vue";
-import ChecklistUsage from "./checklist-usage.vue";
+import ChecklistDisplay from "./checklist-display.vue";
 import {StoreLocal} from "cross-js-base";
 import {StringHash} from "../helpers/string-hash.js";
 import Checklist from "../helpers/checklist.js";
@@ -88,7 +88,7 @@ import SignupDiv from "./signup-div.vue";
 export default {
     components : {
         ChecklistEditor,
-        ChecklistUsage,
+        ChecklistDisplay,
         DrawerDiv,
         SignupDiv
     },
@@ -100,7 +100,7 @@ export default {
                 itemList : []
             },
             currentChecklistKey : "",
-            status : "signup",
+            status : "using",
             localStore : null,
             username : "",
             stateStore : null
@@ -135,8 +135,6 @@ export default {
         if (key) {
             this.currentChecklistKey = key;
         }
-        this.username = "adam";
-        this.status = "using";
     },
     methods : {
         toggleItemDone (key) {
@@ -193,7 +191,6 @@ export default {
             this.localStore.addItem(this.currentChecklistKey, JSON.stringify(cleanChecklist));
         },
         saveEdits (newChecklist) {
-
             this.$set(this.checklists, this.currentChecklistKey, newChecklist);
             this.persist();
             this.status = "using";
