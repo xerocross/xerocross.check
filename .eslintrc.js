@@ -28,6 +28,7 @@ module.exports = {
         "vue/html-self-closing" : [0]
     },
     globals: {
-        "NODE_ENV" : false
+        "NODE_ENV" : false,
+        "console" : false
     }
 };
