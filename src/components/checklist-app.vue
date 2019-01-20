@@ -4,6 +4,7 @@
             <signup-div/>
         </div>
         <div v-show = "status == 'using'">
+            
             <label>Your Checklists</label>
             <div 
                 v-show = "checklistKeys.length == 0" 
@@ -59,21 +60,9 @@
             @event_cancel = "status = 'using'"
             @event_save = "saveNew"
         />
-        <drawer-div
-            button-text-open = "about checklists"
-            button-text-close = "hide"
-        >
-            <h2>About Checklists</h2>
-            <p>
-                A checklist is not the same thing as a to-do list.
-                By its nature, a checklist is reusable.  For example, 
-                it might be your nightly hygiene routine or steps 
-                necessary before you can safely start a plane.  They 
-                are not ad-hoc lists of things to do.  That's why in
-                this app you can save them, edit them, and re-use them.
-                All your data is saved locally on your own computer.
-            </p>
-        </drawer-div>
+        <div>
+            <a href="https://github.com/xerocross/xerocross.check">https://github.com/xerocross/xerocross.check</a>
+        </div>
     </div>
 </template>
 <script>
