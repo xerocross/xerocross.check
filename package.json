@@ -1,6 +1,6 @@
 {
   "name": "xerocross.check",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple checklist app",
   "main": "dist/index.js",
   "scripts": {
