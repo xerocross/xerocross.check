@@ -11,6 +11,9 @@ module.exports = [{
         path : path.resolve(__dirname, './dist'),
         publicPath : '/dist',
         filename : '[name].js',
+        library : 'xerocross.check',
+        libraryTarget : 'umd',
+        umdNamedDefine : true
     },
     externals : {
         vue : "Vue" // remove this line if you want to bundle vue with the script
