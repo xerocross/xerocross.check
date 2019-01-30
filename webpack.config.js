@@ -5,7 +5,7 @@ const webpack = require('webpack')
 module.exports = [{
     entry : {
         'checklist-app' : './src/checklist-app.js',
-        'index' : './src/index.js'
+        'xerocross.check' : './src/xerocross.check.js'
     },
     output : {
         path : path.resolve(__dirname, './dist'),

@@ -78,11 +78,13 @@ export default {
     },
     props : {
         currentChecklist : {
-            type : "object",
-            default : {
-                checklistName : "",
-                itemList : []
-            }
+            type : Object,
+            default : function() {
+                return { 
+                    checklistName : "",
+                    itemList : []
+                }
+            } 
         }
     },
     data () {

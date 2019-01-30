@@ -3,7 +3,7 @@
         <h2>{{ checklistData.name }}</h2>
         <ul class="list-group">
             <li 
-                v-for = "(item, index) in checklistData.items" 
+                v-for = "item in checklistData.items" 
                 :key = "item.key"
                 class = "list-group-item"
                 @click.prevent="toggleDone(item.key)"
@@ -11,22 +11,27 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <span 
-                            :class = "item.done ? 'done-item' : ''" 
+                            
                             class="item"> 
                             
                             <span 
                                 v-show = "item.done" 
-                                class="glyphicon glyphicon-ok"></span>
+                            >
+                                &#9745;
+                            </span>
                             <span 
                                 v-show = "!item.done" 
-                                class="glyphicon glyphicon-unchecked">
-                                
+                            >
+                                &#9633;    
                             </span>
-                            {{ item.listItemText }} 
+                            <span :class = "item.done ? 'done-item' : ''" >
+                                {{ item.listItemText }} 
+                            </span>
                         </span>
                         <span 
                             v-show = "item.done" 
-                            class="done-time">{{ displayTime(item.doneTime) }}</span>
+                            class="done-time">{{ displayTime(item.doneTime) }}
+                        </span>
                     </div>
                 </div>
             </li>
@@ -38,8 +43,8 @@ import moment from "moment";
 export default {
     props : {
         checklistData : {
-            type : "object",
-            default : {}
+            type : Object,
+            default : function(){return {}}
         }
     },
     methods : {

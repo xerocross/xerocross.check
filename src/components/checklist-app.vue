@@ -23,16 +23,16 @@
             </select>
             <div class="btn-group">
                 <a 
-                    v-show = "checklistKeys.length > 0" 
+                    v-if = "checklistKeys.length > 0" 
                     class="btn btn-success"
                     @click.prevent = "edit">edit</a>
                 <a 
-                    v-show = "checklistKeys.length > 0" 
+                    v-if = "checklistKeys.length > 0" 
                     class="btn btn-success"
                     @click.prevent = "deleteThisChecklist">delete</a>
                 
                 <a 
-                    v-show = "checklistKeys.length > 0" 
+                    v-if = "checklistKeys.length > 0" 
                     class="btn btn-success" 
                     @click.prevent = "resetThisChecklist">reset
                 </a>
@@ -60,9 +60,6 @@
             @event_cancel = "status = 'using'"
             @event_save = "saveNew"
         />
-        <div>
-            <a href="https://github.com/xerocross/xerocross.check">https://github.com/xerocross/xerocross.check</a>
-        </div>
     </div>
 </template>
 <script>
