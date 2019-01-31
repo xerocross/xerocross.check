@@ -22,7 +22,7 @@
                             <span 
                                 v-show = "!item.done" 
                             >
-                                &#9633;    
+                                &#x2610;
                             </span>
                             <span :class = "item.done ? 'done-item' : ''" >
                                 {{ item.listItemText }} 
@@ -30,7 +30,7 @@
                         </span>
                         <span 
                             v-show = "item.done" 
-                            class="done-time">{{ displayTime(item.doneTime) }}
+                            class="done-time"><br/>{{ displayTime(item.doneTime) }}
                         </span>
                     </div>
                 </div>

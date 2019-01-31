@@ -24,20 +24,20 @@
             <div class="btn-group">
                 <a 
                     v-if = "checklistKeys.length > 0" 
-                    class="btn btn-success"
+                    class="btn btn-default"
                     @click.prevent = "edit">edit</a>
                 <a 
                     v-if = "checklistKeys.length > 0" 
-                    class="btn btn-success"
+                    class="btn btn-default"
                     @click.prevent = "deleteThisChecklist">delete</a>
                 
                 <a 
                     v-if = "checklistKeys.length > 0" 
-                    class="btn btn-success" 
+                    class="btn btn-default" 
                     @click.prevent = "resetThisChecklist">reset
                 </a>
                 <a 
-                    class="btn btn-success" 
+                    class="btn btn-default" 
                     @click.prevent = "makeNewChecklist">new</a>
             </div>
             <div 
