@@ -14,10 +14,10 @@
                 class="list-group-item flex-item"
             >
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-sm-7">
                         <span class="item">{{ index + 1 }} : {{ item.listItemText }}</span>
                     </div>
-                    <div class="col-5">
+                    <div class="col-sm-5">
                         <div style="text-align:right">
                             <button
                                 class="btn btn-danger remove-button"
