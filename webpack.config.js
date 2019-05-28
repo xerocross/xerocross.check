@@ -1,6 +1,7 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = [{
     entry : {
@@ -16,7 +17,8 @@ module.exports = [{
         umdNamedDefine : true
     },
     externals : {
-        vue : "Vue" // remove this line if you want to bundle vue with the script
+        vue : "Vue", // remove this line if you want to bundle vue with the script
+        jquery : "$"
     },
     module : {
         rules : [
@@ -55,7 +57,9 @@ module.exports = [{
         new webpack.DefinePlugin({
             'NODE_ENV' : JSON.stringify(process.env.NODE_ENV)
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fr|hu|en/),
+        new BundleAnalyzerPlugin()
     ],
     devServer : {
         contentBase : "./public",
@@ -74,6 +78,7 @@ module.exports = [{
         filename : '[name].js',
     },
     externals : {
+        jquery : "$"
     },
     module : {
         rules : [

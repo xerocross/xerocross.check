@@ -14,10 +14,10 @@
                 class="list-group-item flex-item"
             >
                 <div class="row">
-                    <div class="col-sm-7">
+                    <div class="col-7">
                         <span class="item">{{ index + 1 }} : {{ item.listItemText }}</span>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-5">
                         <div style="text-align:right">
                             <button
                                 class="btn btn-danger remove-button"
@@ -52,29 +52,27 @@
             />
             <input
                 :disabled = "newItemInput == ''"
-                class="btn btn-primary add-button"
+                class="btn btn-secondary add-button"
                 type="submit"
                 value = "add"
             />
         </form>
-        <a 
+        <button 
             :disabled = "itemList.length == 0" 
             class="btn btn-success" 
-            @click.prevent = "save">save</a>
-        <a 
-            class="btn btn-default" 
+            @click.prevent = "save">save</button>
+        <button 
+            class="btn btn-secondary" 
             @click.prevent = "cancel">
             cancel
-        </a>
+        </button>
     </div>
 </template>
 <script>
-import {DrawerDiv} from "cross-vue-base";
 import {StringHash} from "../helpers/string-hash.js";
 
 export default {
     components : {
-        DrawerDiv
     },
     props : {
         currentChecklist : {
@@ -170,6 +168,9 @@ export default {
         .form-box {
             margin-bottom: 2em;
         }
+    }
+    input {
+        margin-bottom: 10px;
     }
     select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] { font-size: 16px; }
 }

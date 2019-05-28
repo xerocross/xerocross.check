@@ -1,53 +1,15 @@
 <template>
     <div class="checklist-app">
-        <div v-show = "status == 'signup'">
-            <signup-div/>
-        </div>
-        <div v-show = "status == 'using'">
-            
-            <label>Your Checklists</label>
-            <div 
-                v-show = "checklistKeys.length == 0" 
-                class="alert alert-info">you have no checklists yet</div>
-            <select 
-                v-show = "checklistKeys.length > 0"
-                v-model = "currentChecklistKey" 
-                class="form-control">
-                <option 
-                    v-for ="checklistKey in checklistKeys" 
-                    :key = "checklistKey" 
-                    :value = "checklistKey"
-                >
-                    {{ checklists[checklistKey].name }}
-                </option>
-            </select>
-            <div class="btn-group">
-                <a 
-                    v-if = "checklistKeys.length > 0" 
-                    class="btn btn-default"
-                    @click.prevent = "edit">edit</a>
-                <a 
-                    v-if = "checklistKeys.length > 0" 
-                    class="btn btn-default"
-                    @click.prevent = "deleteThisChecklist">delete</a>
-                
-                <a 
-                    v-if = "checklistKeys.length > 0" 
-                    class="btn btn-default" 
-                    @click.prevent = "resetThisChecklist">reset
-                </a>
-                <a 
-                    class="btn btn-default" 
-                    @click.prevent = "makeNewChecklist">new</a>
-            </div>
-            <div 
-                class = "usage-panel">
-                <checklist-display 
-                    :checklist-data = "checklists[currentChecklistKey]" 
-                    @click_item = "toggleItemDone"
-                />
-            </div>
-        </div>
+        <checklist-using
+            v-show = "status == 'using'"
+            :checklists = "checklists"
+            :current-checklist-key = "currentChecklistKey"
+            @event_persist = "persist"
+            @event_delete = "deleteThisChecklist"
+            @event_edit = "editThisChecklist"
+            @event_update_checklist_key = "updateKey"
+            @event_new = "makeNewChecklist"
+        ></checklist-using>
         <checklist-editor
             v-if = "status == 'editing'"
             :current-checklist = "checklists[currentChecklistKey]"
@@ -59,24 +21,22 @@
             :current-checklist = "baseNewChecklist"
             @event_cancel = "status = 'using'"
             @event_save = "saveNew"
+            
         />
     </div>
 </template>
 <script>
 import ChecklistEditor from "./checklist-editor.vue";
-import ChecklistDisplay from "./checklist-display.vue";
+
 import {StoreLocal} from "cross-js-base";
 import {StringHash} from "../helpers/string-hash.js";
 import Checklist from "../helpers/checklist.js";
-import { DrawerDiv } from "cross-vue-base";
-import SignupDiv from "./signup-div.vue";
+import ChecklistUsing from "./checklist-using.vue";
 
 export default {
     components : {
         ChecklistEditor,
-        ChecklistDisplay,
-        DrawerDiv,
-        SignupDiv
+        ChecklistUsing,
     },
     data () {
         return {
@@ -116,6 +76,7 @@ export default {
     mounted () {
         this.buildFromStorage();
         this.currentChecklistKey = this.checklistKeys[0];
+
         this.stateStore = StoreLocal.build("checklist-state");
         let key = this.stateStore.getItem("currentChecklist")
         if (key) {
@@ -123,29 +84,32 @@ export default {
         }
     },
     methods : {
-        toggleItemDone (key) {
-            let item = this.currentChecklistObject.items.filter(item => item.key == key)[0];
-            window.item = item;
-            if (item.done == true) {
-                if(confirm("Uncheck this item?")) {
-                    item.done = false;
-                }
-            } else {
-                this.$set(item, "done", true);
-                let t = new Date();
-                this.$set(item, "doneTime", t.toJSON());
-            }
-            this.persist();
+        updateKey (newKey) {
+            this.currentChecklistKey = newKey;
         },
-        resetThisChecklist () {
-            if (confirm("Reset the current checklist?")) {
-                let list = this.currentChecklistObject.items;
-                for (let i = 0; i < list.length; i++) {
-                    list[i].done = false;
-                }
-                this.persist();
-            }
-        },
+        // toggleItemDone (key) {
+        //     let item = this.currentChecklistObject.items.filter(item => item.key == key)[0];
+        //     window.item = item;
+        //     if (item.done == true) {
+        //         if(confirm("Uncheck this item?")) {
+        //             item.done = false;
+        //         }
+        //     } else {
+        //         this.$set(item, "done", true);
+        //         let t = new Date();
+        //         this.$set(item, "doneTime", t.toJSON());
+        //     }
+        //     this.persist();
+        // },
+        // resetThisChecklist () {
+        //     if (confirm("Reset the current checklist?")) {
+        //         let list = this.currentChecklistObject.items;
+        //         for (let i = 0; i < list.length; i++) {
+        //             list[i].done = false;
+        //         }
+        //         this.persist();
+        //     }
+        // },
         buildFromStorage () {
             let indexName = "checklists";
             try {
@@ -205,24 +169,26 @@ export default {
             this.currentChecklistKey = newKey;
             this.status = "using";
         },
-        edit () {
+        editThisChecklist () {
             this.status = "editing";
         },
         makeNewChecklist () {
             this.status = "new";
         },
         deleteThisChecklist () {
-            if (confirm("Delete this checklist?  (There is no undo.)")) {
-                this.localStore.removeItem(this.currentChecklistKey);
-                this.$delete(this.checklists, this.currentChecklistKey);
-                this.currentChecklistKey = this.checklistKeys[0];
-            }
+            this.localStore.removeItem(this.currentChecklistKey);
+            this.$delete(this.checklists, this.currentChecklistKey);
+            this.currentChecklistKey = this.checklistKeys[0];
         }
     }
 }
 </script>
 <style lang="scss">
 .checklist-app {
+    label {
+        font-size: 110%;
+        font-weight: bold;
+    }
     .usage-panel {
         margin-top: 1em;
     }

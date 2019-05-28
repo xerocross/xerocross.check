@@ -1,6 +1,22 @@
 <template>
     <div class="checklist-usage">
-        <h2>{{ checklistData.name }}</h2>
+        <div class="row title-row">
+            <div class = "col-6 title">
+                <h2>{{ checklistData.name }}</h2>
+            </div>
+            <div class="col-6 title-buttons">
+                <button 
+                    class="btn btn-danger"
+                    data-toggle="tooltip" 
+                    title="reset all items on the checklist to unchecked"
+                    @click = "resetThisChecklist"
+                >
+                    reset
+                </button>
+            </div>
+        </div>
+
+
         <ul class="list-group">
             <li 
                 v-for = "item in checklistData.items" 
@@ -15,12 +31,12 @@
                             class="item"> 
                             
                             <span 
-                                v-show = "item.done" 
+                                v-show = "item.done"
                             >
                                 &#9745;
                             </span>
                             <span 
-                                v-show = "!item.done" 
+                                v-show = "!item.done"
                             >
                                 &#x2610;
                             </span>
@@ -39,6 +55,7 @@
     </div>
 </template>
 <script>
+import $ from "jquery";
 import moment from "moment";
 export default {
     props : {
@@ -46,6 +63,12 @@ export default {
             type : Object,
             default : function(){return {}}
         }
+    },
+    mounted () {
+        $(document).ready(()=> {
+            debugger;
+            $("[data-toggle]").tooltip();
+        })
     },
     methods : {
         toggleDone (key) {
@@ -57,8 +80,11 @@ export default {
             } catch (e) {
                 return "";
             }
-        }
-    }
+        },
+        resetThisChecklist () {
+            this.$emit("event_reset");
+        },
+    },
 }
 </script>
 <style lang="scss">
@@ -71,6 +97,12 @@ export default {
     }
     .done-time {
         padding-left:2em;
+    }
+    .title-row {
+        margin-bottom: 10px;
+        .title-buttons {
+            text-align: right;
+        }
     }
 }
 </style>
